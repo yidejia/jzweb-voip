@@ -91,7 +91,7 @@ class Client
      */
     public function signOff($workNumber)
     {
-        return $this->callCenter($workNumber);
+        return $this->callCenter->signOff($workNumber);
     }
 
     /**

@@ -27,7 +27,7 @@ class  HttpRequest
     public function __construct($config)
     {
         $this->config = $config;
-        $this->client = new Client(['base_uri' => $this->config['api_url'], 'timeout' => $this->timeout]);
+        $this->client = new Client(['base_uri' => $this->config['apiHostUrl'], 'timeout' => $this->timeout]);
     }
 
 
@@ -71,7 +71,7 @@ class  HttpRequest
      */
     private function authorization($accountId, $ts)
     {
-        return base64_decode("$accountId:" . $ts);
+        return base64_encode("$accountId:" . $ts);
     }
 
     /**
@@ -89,6 +89,19 @@ class  HttpRequest
             $xml .= "</$key>";
         }
         return $xml;
+    }
+
+    /**
+     * XML转换为数组
+     *
+     * @param string $xml
+     * @return mixed
+     */
+    private function xml_to_data($xml)
+    {
+        $xml = simplexml_load_string($xml);
+        $json = json_encode($xml);
+        return json_decode($json, TRUE);
     }
 
     /**
@@ -126,9 +139,9 @@ class  HttpRequest
             //组装应用ID
             $data['appId'] = $this->config['appId'];
             //请求时间戳
-            $ts = date("YYYYMMDDhhmmss");
+            $ts = date("YmdHis");
             //生成签名
-            $sigParameter = $this->buildSign(($isSubAccount ? $this->config['subAccountSid'] : $this->config['accountSid']), $this->config['accessToken'], $ts);
+            $sigParameter = $this->buildSign(($isSubAccount ? $this->config['subAccountSid'] : $this->config['accountSid']), ($isSubAccount ? $this->config['subAccessToken'] : $this->config['accessToken']), $ts);
             //生成报头验证信息
             $authorization = $this->authorization(($isSubAccount ? $this->config['subAccountSid'] : $this->config['accountSid']), $ts);
             //组装请求地址
@@ -142,18 +155,23 @@ class  HttpRequest
                 $body = json_encode([$operation => $data]);
             }
             //报文
-            $res = $this->request('POST', $requestUrl, [
-                'headers' => [
-                    'Accept' => "application/xml",
-                    'Content-Type' => 'application/xml;charset=utf-8',
-                    'Content-Length' => strlen($body),
-                    'Authorization' => $authorization
-                ],
-                'body' => $body,
-            ]);
+            try {
+                $res = $this->client->request('POST', $requestUrl, [
+                    'headers' => [
+                        'Accept' => "application/xml",
+                        'Content-Type' => 'application/xml;charset=utf-8',
+                        'Content-Length' => strlen($body),
+                        'Authorization' => $authorization
+                    ],
+                    'body' => $body,
+                ]);
+            } catch (\Exception $e) {
+                return ['return_code' => "FAIL", 'return_msg' => $e->getMessage()];
+            }
             $httpCode = $res->getStatusCode();
+
             //记录日志
-            if ($this->config['debug']) {
+            if ($this->config['debug'] && $this->config['cacheFilePath']) {
                 $log = "======Start " . date("Y-m-d H:i:s") . "======\n";
                 $log .= "api:" . $api . "\n";
                 $log .= "sign:" . $sigParameter . "\n";
@@ -161,18 +179,19 @@ class  HttpRequest
                 $log .= "authorization:" . $authorization . "\n";
                 $log .= "request url:" . $requestUrl . "\n";
                 $log .= "http code:" . $httpCode . "\n";
-                if ($httpCode != 200) {
-                    $log .= $res->getBody()->getContents() . "\n";
-                }
                 $log .= "======End " . date("Y-m-d H:i:s") . "======\n";
                 @file_put_contents($this->config['cacheFilePath'], $log, FILE_APPEND);
             }
             if ($httpCode == 200) {
-                $content = $res->getBody()->getContents();
+                $content = $this->xml_to_data($res->getBody()->getContents());
             } else {
                 throw  new ServerException("网络请求异常");
             }
-            return $content;
+            if ($content['respCode'] != 0) {
+                return ['return_code' => $content['respCode'], 'return_msg' => ErrorCode::GetErrorMsg($content['respCode'])];
+            } else {
+                return ['return_code' => "SUCCESS", 'data' => $content[$operation]];
+            }
         } catch (\Exception $e) {
             return ['return_code' => "FAIL", 'return_msg' => $e->getMessage()];
         }

@@ -66,10 +66,10 @@ class Applications extends BaseRequest
         if ($maxNumber > 500) {
             return ['return_code' => "FAIL", 'return_msg' => "每次最多允许返回的话单条目数不允许超过500"];
         }
-        return $this->httpRequest->apiPost("/Applications/billList", [
+        return $this->httpRequest->apiPost("Applications/billList", [
             'subAccountSid' => $subAccountSid,
-            'startTime' => date("YYYYMMDDhhiiss", strtoupper($startTime)),
-            'endTime' => date("YYYYMMDDhhiiss", strtoupper($endTime)),
+            'startTime' => date("YmdHis", strtoupper($startTime)),
+            'endTime' => date("YmdHis", strtoupper($endTime)),
             'lastMaxId' => $lastMaxId,
             'maxNumber' => $maxNumber
         ], false);
@@ -92,7 +92,7 @@ class Applications extends BaseRequest
         if (!$callId) {
             return ['return_code' => "FAIL", 'return_msg' => "呼叫ID输入不能为空"];
         } else {
-            return $this->httpRequest->apiPost("/Applications/billDetail", ['callId' => $callId], false);
+            return $this->httpRequest->apiPost("Applications/callDetail", ['callId' => $callId], false);
         }
     }
 
@@ -116,7 +116,7 @@ class Applications extends BaseRequest
         if (!$callId) {
             return ['return_code' => "FAIL", 'return_msg' => "呼叫ID输入不能为空"];
         } else {
-            return $this->httpRequest->apiPost("/Applications/callRecordUrl", ['callId' => $callId], false);
+            return $this->httpRequest->apiPost("Applications/callRecordUrl", ['callId' => $callId], false);
         }
     }
 

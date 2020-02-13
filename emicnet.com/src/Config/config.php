@@ -18,18 +18,22 @@ return [
             'charSet' => 'utf-8',
             //数据格式，1:json,2:xml格式
             'dataType' => '2',
+            //日志文件路径
+            'cacheFilePath' => "",
             //应用ID
             'appId' => 'todo',
-            //云总机
-            'cloudNumber' => "02028269410",
+            //授权访问token
+            'accessToken' => "todo",
             //主账号
             'accountSid' => "todo",
+            //云总机测试平台默认域名
+            'apiHostUrl' => "https://api.emicloud.com/",
+            //云总机
+            'cloudNumber' => "todo",
             //子账号
             'subAccountSid' => "todo",
             //授权访问token
-            'accessToken' => "todo",
-            //云总机测试平台默认域名
-            'apiHostUrl' => "http://apiusertest.emic.com.cn/"
+            'subAccessToken' => "todo",
         ],
         'dev' => [
             //调试模式
@@ -40,18 +44,22 @@ return [
             'charSet' => 'utf-8',
             //数据格式，1:json,2:xml格式
             'dataType' => '2',
+            //日志文件路径
+            'cacheFilePath' => "",
             //应用ID
             'appId' => 'todo',
-            //云总机
-            'cloudNumber' => "todo",
+            //授权访问token
+            'accessToken' => "todo",
             //主账号
             'accountSid' => "todo",
+            //云总机测试平台默认域名
+            'apiHostUrl' => "https://api.emicloud.com/",
+            //云总机
+            'cloudNumber' => "todo",
             //子账号
             'subAccountSid' => "todo",
             //授权访问token
-            'accessToken' => "todo",
-            //云总机测试平台默认域名
-            'apiHostUrl' => "http://apiusertest.emic.com.cn/"
+            'subAccessToken' => "todo",
 
         ],
         'test' => [
@@ -63,40 +71,48 @@ return [
             'charSet' => 'utf-8',
             //数据格式，1:json,2:xml格式
             'dataType' => '2',
+            //日志文件路径
+            'cacheFilePath' => "",
             //应用ID
             'appId' => 'todo',
-            //云总机
-            'cloudNumber' => "todo",
+            //授权访问token
+            'accessToken' => "todo",
             //主账号
             'accountSid' => "todo",
+            //云总机测试平台默认域名
+            'apiHostUrl' => "https://api.emicloud.com/",
+            //云总机
+            'cloudNumber' => "todo",
             //子账号
             'subAccountSid' => "todo",
             //授权访问token
-            'accessToken' => "todo",
-            //云总机测试平台默认域名
-            'apiHostUrl' => "http://apiusertest.emic.com.cn/"
+            'subAccessToken' => "todo",
         ],
         'prod' => [
             //调试模式
-            'debug' => false,
+            'debug' => true,
             //版本
             'version' => '20170405',
             //字符编号 GBK|UTF-8
             'charSet' => 'utf-8',
             //数据格式，1:json,2:xml格式
             'dataType' => '2',
+            //日志文件路径
+            'cacheFilePath' => "",
             //应用ID
             'appId' => 'todo',
-            //云总机
-            'cloudNumber' => "todo",
+            //授权访问token
+            'accessToken' => "todo",
             //主账号
             'accountSid' => "todo",
+            //云总机测试平台默认域名
+            'apiHostUrl' => "https://api.emicloud.com/",
+            //云总机
+            'cloudNumber' => "todo",
             //子账号
             'subAccountSid' => "todo",
             //授权访问token
-            'accessToken' => "todo",
-            //云总机测试平台默认域名
-            'apiHostUrl' => "http://apiusertest.emic.com.cn/"
+            'subAccessToken' => "todo",
         ],
     ]
 ];

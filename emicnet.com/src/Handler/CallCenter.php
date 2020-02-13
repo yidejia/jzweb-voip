@@ -40,7 +40,7 @@ class CallCenter extends BaseRequest
         if (!$workNumber) {
             return ['return_code' => "FAIL", 'return_msg' => "坐席工号输入不能为空"];
         } else {
-            return $this->httpRequest->apiPost("/CallCenter/signIn", [
+            return $this->httpRequest->apiPost("CallCenter/signIn", [
                     'workNumber' => $workNumber,
                     'gid' => $gid,
                     'type' => $type,
@@ -63,7 +63,7 @@ class CallCenter extends BaseRequest
         if (!$workNumber) {
             return ['return_code' => "FAIL", 'return_msg' => "坐席工号输入不能为空"];
         } else {
-            return $this->httpRequest->apiPost("/CallCenter/signOff", [
+            return $this->httpRequest->apiPost("CallCenter/signOff", [
                     'workNumber' => $workNumber
                 ]
             );
@@ -94,7 +94,7 @@ class CallCenter extends BaseRequest
         if ($mode != 0 && $mode != 1) {
             return ['return_code' => "FAIL", 'return_msg' => "mode取值只能是0或1"];
         }
-        return $this->httpRequest->apiPost("/CallCenter/changeMode", [
+        return $this->httpRequest->apiPost("CallCenter/changeMode", [
                 'workNumber' => $workNumber,
                 'mode' => $mode,
                 'deviceNumber' => $deviceNumber
@@ -120,7 +120,7 @@ class CallCenter extends BaseRequest
         if ($status != 0 && $status != 1 && $status != 2) {
             return ['return_code' => "FAIL", 'return_msg' => "status取值只能是0或1或2"];
         }
-        return $this->httpRequest->apiPost("/CallCenter/changeStatus", [
+        return $this->httpRequest->apiPost("CallCenter/changeStatus", [
                 'workNumber' => $workNumber,
                 'status' => $status
             ]
@@ -154,7 +154,7 @@ class CallCenter extends BaseRequest
         if ($displayMode != 0 && $displayMode != 1) {
             return ['return_code' => "FAIL", 'return_msg' => "被叫来电号码显示方式取值只能是0或1"];
         }
-        return $this->httpRequest->apiPost("/CallCenter/callOut", [
+        return $this->httpRequest->apiPost("CallCenter/callOut", [
                 'workNumber' => $workNumber,
                 'to' => $to,
                 'outNumber' => $outNumber,
@@ -184,7 +184,7 @@ class CallCenter extends BaseRequest
         if (!$callId) {
             return ['return_code' => "FAIL", 'return_msg' => "呼叫ID输入不能为空"];
         }
-        return $this->httpRequest->apiPost("/CallCenter/callCancel", [
+        return $this->httpRequest->apiPost("CallCenter/callCancel", [
                 'workNumber' => $workNumber,
                 'callId' => $callId
             ]
