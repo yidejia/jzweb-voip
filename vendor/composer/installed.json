@@ -1,47 +1,49 @@
 [
     {
         "name": "guzzlehttp/guzzle",
-        "version": "6.3.3",
-        "version_normalized": "6.3.3.0",
+        "version": "6.5.2",
+        "version_normalized": "6.5.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/guzzle.git",
-            "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba"
+            "reference": "43ece0e75098b7ecd8d13918293029e555a50f82"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/407b0cb880ace85c9b63c5f9551db498cb2d50ba",
-            "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba",
+            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/43ece0e75098b7ecd8d13918293029e555a50f82",
+            "reference": "43ece0e75098b7ecd8d13918293029e555a50f82",
             "shasum": ""
         },
         "require": {
+            "ext-json": "*",
             "guzzlehttp/promises": "^1.0",
-            "guzzlehttp/psr7": "^1.4",
+            "guzzlehttp/psr7": "^1.6.1",
             "php": ">=5.5"
         },
         "require-dev": {
             "ext-curl": "*",
             "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
-            "psr/log": "^1.0"
+            "psr/log": "^1.1"
         },
         "suggest": {
+            "ext-intl": "Required for Internationalized Domain Name (IDN) support",
             "psr/log": "Required for using the Log middleware"
         },
-        "time": "2018-04-22T15:46:56+00:00",
+        "time": "2019-12-23T11:57:10+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "6.3-dev"
+                "dev-master": "6.5-dev"
             }
         },
         "installation-source": "dist",
         "autoload": {
-            "files": [
-                "src/functions_include.php"
-            ],
             "psr-4": {
                 "GuzzleHttp\\": "src/"
-            }
+            },
+            "files": [
+                "src/functions_include.php"
+            ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -194,17 +196,17 @@
     },
     {
         "name": "league/flysystem",
-        "version": "1.0.55",
-        "version_normalized": "1.0.55.0",
+        "version": "1.0.64",
+        "version_normalized": "1.0.64.0",
         "source": {
             "type": "git",
             "url": "https://github.com/thephpleague/flysystem.git",
-            "reference": "33c91155537c6dc899eacdc54a13ac6303f156e6"
+            "reference": "d13c43dbd4b791f815215959105a008515d1a2e0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/33c91155537c6dc899eacdc54a13ac6303f156e6",
-            "reference": "33c91155537c6dc899eacdc54a13ac6303f156e6",
+            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/d13c43dbd4b791f815215959105a008515d1a2e0",
+            "reference": "d13c43dbd4b791f815215959105a008515d1a2e0",
             "shasum": ""
         },
         "require": {
@@ -216,7 +218,7 @@
         },
         "require-dev": {
             "phpspec/phpspec": "^3.4",
-            "phpunit/phpunit": "^5.7.10"
+            "phpunit/phpunit": "^5.7.26"
         },
         "suggest": {
             "ext-fileinfo": "Required for MimeType",
@@ -234,7 +236,7 @@
             "spatie/flysystem-dropbox": "Allows you to use Dropbox storage",
             "srmklive/flysystem-dropbox-v2": "Allows you to use Dropbox storage for PHP 5 applications"
         },
-        "time": "2019-08-24T11:17:19+00:00",
+        "time": "2020-02-05T18:14:17+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -280,17 +282,17 @@
     },
     {
         "name": "league/flysystem-sftp",
-        "version": "1.0.21",
-        "version_normalized": "1.0.21.0",
+        "version": "1.0.22",
+        "version_normalized": "1.0.22.0",
         "source": {
             "type": "git",
             "url": "https://github.com/thephpleague/flysystem-sftp.git",
-            "reference": "4c2f2fcc4da251127c315d37eb3dfa5e94658df0"
+            "reference": "cab59dd2277e02fe46f5f23195672a02ed49774d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/flysystem-sftp/zipball/4c2f2fcc4da251127c315d37eb3dfa5e94658df0",
-            "reference": "4c2f2fcc4da251127c315d37eb3dfa5e94658df0",
+            "url": "https://api.github.com/repos/thephpleague/flysystem-sftp/zipball/cab59dd2277e02fe46f5f23195672a02ed49774d",
+            "reference": "cab59dd2277e02fe46f5f23195672a02ed49774d",
             "shasum": ""
         },
         "require": {
@@ -302,7 +304,7 @@
             "mockery/mockery": "0.9.*",
             "phpunit/phpunit": "^5.7.25"
         },
-        "time": "2019-09-19T09:11:05+00:00",
+        "time": "2019-10-16T20:05:49+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
