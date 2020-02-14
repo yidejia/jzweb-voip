@@ -21,7 +21,7 @@ exit;
 //print_r($result);
 //exit;
 //下载话单
-//$result = $sdk->billList("ce0df13133e6ea1c616fd3fa2aaece0e", "2020-02-11", date("Y-m-d"));
+//$result = $sdk->billList("todo", "2020-02-11", date("Y-m-d"));
 //print_r($result);
 //exit;
 //坐席签出
