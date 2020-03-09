@@ -5,6 +5,7 @@ namespace jzweb\voip\emicnet;
 
 use jzweb\voip\emicnet\Handler\Applications;
 use jzweb\voip\emicnet\Handler\CallCenter;
+use jzweb\voip\emicnet\Handler\Enterprises;
 
 /**
  * 南京易米呼叫云客户端
@@ -17,6 +18,7 @@ class Client
     private $config;
     private $applications;
     private $callCenter;
+    private $enterprises;
 
     /**
      * 构造函数
@@ -29,6 +31,22 @@ class Client
         $this->config = $config;
         $this->applications = new Applications($this->config);
         $this->callCenter = new CallCenter($this->config);
+        $this->enterprises = new Enterprises($this->config);
+    }
+
+    /**
+     * 创建子账号
+     *
+     * @param string $appId
+     * @param string $nickName
+     * @param string $mobile
+     * @param string $email
+     * @return array|mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function createSubAccount($appId, $nickName = "", $mobile = "", $email = "")
+    {
+        return $this->applications->createSubAccount($appId, $nickName, $mobile, $email);
     }
 
     /**
@@ -144,6 +162,23 @@ class Client
     public function callCancel($workNumber, $callId)
     {
         return $this->callCenter->callCancel($workNumber, $callId);
+    }
+
+    /**
+     * 绑定云总计
+     *
+     * @param string $appId
+     * @param string $switchNumber
+     * @param string $number
+     * @param string $password
+     * @param int $chargeMode
+     * @param string $userData
+     * @param string $callreqUrl
+     * @return EntityReport|mixed
+     */
+    public function addEnterprise($appId, $switchNumber, $number, $password, $chargeMode = 0, $userData = "", $callreqUrl = "")
+    {
+        return $this->enterprises->addEnterprise($appId, $switchNumber, $number, $password, $chargeMode, $userData, $callreqUrl);
     }
 
 

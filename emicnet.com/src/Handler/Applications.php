@@ -25,6 +25,33 @@ class Applications extends BaseRequest
 
 
     /**
+     * 创建子账号
+     *
+     * @param string $appId 应用ID
+     * @param string $nickName 子账号昵称
+     * @param string $mobile 子账号用户手机号码
+     * @param string $email 子账号用户邮件地址
+     *
+     * @return array|mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function createSubAccount($appId, $nickName = "", $mobile = "", $email = "")
+    {
+        if (!$appId) {
+            return ['return_code' => "FAIL", 'return_msg' => "appId输入不能为空"];
+        }
+
+        return $this->httpRequest->apiPost("Applications/createSubAccount", [
+            'appId' => $appId,
+            'nickName' => $nickName,
+            'mobile' => $mobile,
+            'email' => $email
+        ], false);
+
+    }
+
+
+    /**
      * 下载应用话单
      *
      * 用户可通过本接口下载以下话单：
