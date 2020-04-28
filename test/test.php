@@ -11,7 +11,7 @@ include "../vendor/autoload.php";
 
 $config = [
     //调试模式
-    'debug' => false,
+    'debug' => true,
     //版本
     'version' => '20170405',
     //字符编号 GBK|UTF-8
@@ -37,6 +37,8 @@ $config = [
 ];
 
 $sdk = new \jzweb\voip\emicnet\Client($config);
+$result=$sdk->createUser($config['appId'], "15000008827", 8827);
+print_r($result);
 
 //创建子账号
 //$result = $sdk->createSubAccount($config['appId']);
@@ -47,9 +49,9 @@ $sdk = new \jzweb\voip\emicnet\Client($config);
 //print_r($result);
 //exit;
 //活在通话语音文件
-$result = $sdk->callRecordUrl("api016000003a11581584958953XQ03b");
-print_r($result);
-exit;
+//$result = $sdk->callRecordUrl("api016000003a11581584958953XQ03b");
+//print_r($result);
+//exit;
 //获取话单详情
 //$result = $sdk->callDetail("api016000003a11581584958953XQ03b");
 //print_r($result);
@@ -67,10 +69,10 @@ exit;
 //print_r($result);
 //exit;
 //呼出电话
-$result = $sdk->callOut(8800, "13202018503");
-print_r($result);
-exit;
+//$result = $sdk->callOut(8800, "13202018503");
+//print_r($result);
+//exit;
 //挂断电话
-$result = $sdk->callCancel(8800, "asdfasdf");
-print_r($result);
-exit;
+//$result = $sdk->callCancel(8800, "asdfasdf");
+//print_r($result);
+//exit;

@@ -181,5 +181,37 @@ class Client
         return $this->enterprises->addEnterprise($appId, $switchNumber, $number, $password, $chargeMode, $userData, $callreqUrl);
     }
 
+    /**
+     * 创建企业用户
+     *
+     * @param string $appId
+     * @param string $phone
+     * @param string $workNumber
+     * @param string $displayName
+     * @param string $directNumber
+     * @param string $callTime
+     * @param string $password
+     * @param string $number
+     * @return array|mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function createUser($appId, $phone, $workNumber = "", $displayName = "", $directNumber = "", $callTime = "", $password = "", $number = "")
+    {
+        return $this->enterprises->createUser($appId, $phone, $workNumber, $displayName, $directNumber, $callTime, $password, $number);
+    }
+
+    /**
+     * 更新企业用户工号
+     *
+     * @param string $appId
+     * @param string $number
+     * @param string $workNumber
+     * @return array|mixed
+     */
+    public function updateWorkNumber($appId, $number, $workNumber)
+    {
+        return $this->enterprises->updateWorkNumber($appId, $number, $workNumber);
+    }
+
 
 }
